@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Yunhae OBS 추천 콘텐츠</title>
+<style>
+html,body{margin:0;width:100%;height:100%;overflow:hidden;background:transparent}
+#image{display:block;width:100%;height:100%;object-fit:contain}
+</style>
+</head>
+<body>
+<img id="image" alt="오늘의 추천 콘텐츠">
+<script>
+const image=document.getElementById('image');
+function refresh(){
+  const candidate=new Image();
+  candidate.onload=()=>{image.src=candidate.src;image.style.visibility='visible'};
+  candidate.onerror=()=>{if(!image.getAttribute('src'))image.style.visibility='hidden'};
+  candidate.src='./today.png?v='+Date.now();
+}
+refresh();
+setInterval(refresh,30000);
+</script>
+</body>
+</html>
